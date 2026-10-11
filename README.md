@@ -14,22 +14,22 @@ Massaggiatore viso e collo con **LED**, **microcorrenti EMS** e **calore a 42°C
 ## 🖼️ Anteprima del negozio
 
 ### Home — Hero section
-![Home hero](screenshots/01-home-hero.png)
+![Home hero](screenshots/01-home-hero.jpg)
 
 ### Tecnologie & Best seller
-![Features](screenshots/02-features.png)
+![Features](screenshots/02-features.jpg)
 
 ### Come si usa & Recensioni clienti
 ![Come si usa](screenshots/03-how-it-works.png)
 
 ### Catalogo prodotti
-![Prodotti](screenshots/04-products.png)
+![Prodotti](screenshots/04-products.jpg)
 
 ### Pagina prodotto — Dettagli
-![Dettagli prodotto](screenshots/05-product-details.png)
+![Dettagli prodotto](screenshots/05-product-details.jpg)
 
 ### Pagina prodotto — Offerta €45,99
-![Pagina prodotto](screenshots/06-product-page.png)
+![Pagina prodotto](screenshots/06-product-page.jpg)
 
 ## 🛠️ Tech
 
