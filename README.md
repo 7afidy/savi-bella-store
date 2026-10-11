@@ -1,37 +1,43 @@
-# 🌸 Savi Bella Store
+# Savi Bella Store
 
-**Beauty tech da usare a casa** — Store dropshipping per il mercato italiano.
+Beauty tech da usare a casa — Store dropshipping per il mercato italiano.
 
 ## Il prodotto hero: Savi Bella Lift
 
-Massaggiatore viso e collo con **LED**, **microcorrenti EMS** e **calore a 42°C**.
-*Il collo torna a sembrare giovane. In 5 minuti al giorno.*
+Massaggiatore viso e collo con LED, microcorrenti EMS e calore a 42°C.
+Il collo torna a sembrare giovane. In 5 minuti al giorno.
 
-- ✅ Spedizione gratuita in 24/48 ore
-- ✅ Reso gratuito entro 30 giorni
-- ✅ Pagamento alla consegna disponibile
+- Spedizione gratuita in 24/48 ore
+- Reso gratuito entro 30 giorni
+- Pagamento alla consegna disponibile
 
-## 🖼️ Anteprima del negozio
+## Screenshots
 
 ### Home — Hero section
-![Home hero](screenshots/01-home-hero.jpg)
 
-### Tecnologie & Best seller
-![Features](screenshots/02-features.jpg)
+![Home hero](https://d.uguu.se/YBlQgXtC.jpg)
 
-### Come si usa & Recensioni clienti
-![Come si usa](screenshots/03-how-it-works.png)
+### Tecnologie e best seller
+
+![Features](https://n.uguu.se/pitnUTCo.jpg)
+
+### Come si usa e recensioni clienti
+
+![Come si usa](https://d.uguu.se/CPQaQXkG.jpg)
 
 ### Catalogo prodotti
-![Prodotti](screenshots/04-products.jpg)
+
+![Prodotti](https://h.uguu.se/GwcytJbv.jpg)
 
 ### Pagina prodotto — Dettagli
-![Dettagli prodotto](screenshots/05-product-details.jpg)
 
-### Pagina prodotto — Offerta €45,99
-![Pagina prodotto](screenshots/06-product-page.jpg)
+![Dettagli prodotto](https://d.uguu.se/aqFCSntF.jpg)
 
-## 🛠️ Tech
+### Pagina prodotto — Offerta
 
-Tema Shopify personalizzato (export del tema). La cartella del tema si trova in
-[`theme_export__iy8vem-a1-myshopify-com-savi-bella-theme__11OCT2026-0338pm/`](theme_export__iy8vem-a1-myshopify-com-savi-bella-theme__11OCT2026-0338pm/).
+![Pagina prodotto](https://h.uguu.se/nPcyeSqp.jpg)
+
+## Tech
+
+Tema Shopify personalizzato. L'export del tema si trova nella cartella
+`theme_export_` alla radice del repository.
