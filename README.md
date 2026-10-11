@@ -15,7 +15,7 @@ Il collo torna a sembrare giovane. In 5 minuti al giorno.
 
 ### Home — Hero section
 
-![Home hero](https://d.uguu.se/YBlQgXtC.jpg)
+
 
 ### Tecnologie e best seller
 
