@@ -1,0 +1,10 @@
+<section class="section" style="text-align:center">
+  <div class="wrap wrap--narrow">
+    <h1>{{ 'general.404.title' | t }}</h1>
+    <p style="color:var(--muted)">{{ 'general.404.subtext' | t }}</p>
+    <a class="btn btn--primary" href="{{ routes.root_url }}">{{ 'general.404.link' | t }}</a>
+  </div>
+</section>
+{% schema %}
+{ "name": "404", "settings": [] }
+{% endschema %}

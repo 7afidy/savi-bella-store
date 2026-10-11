@@ -1,0 +1,39 @@
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}<p>{{ section.settings.subheading }}</p>{%- endif -%}
+    </div>
+    <div class="steps">
+      {%- for block in section.blocks -%}
+        <div class="step" {{ block.shopify_attributes }}>
+          <div class="step__num"></div>
+          <h3>{{ block.settings.heading }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Come si usa",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "Come si usa" },
+    { "type": "text", "id": "subheading", "label": "Sottotitolo", "default": "Tre passaggi, cinque minuti, ogni sera." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Passaggio",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titolo", "default": "Applica la crema" },
+        { "type": "text", "id": "text", "label": "Testo", "default": "Stendi il tuo siero o gel abituale su viso e collo puliti." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Come si usa", "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }] }]
+}
+{% endschema %}

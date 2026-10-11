@@ -1,0 +1,50 @@
+{
+  "general": {
+    "accessibility": { "skip_to_content": "Vai al contenuto", "close": "Chiudi", "menu": "Menu" },
+    "nav": { "home": "Home", "catalog": "Catalogo", "about": "Chi siamo", "contact": "Contatti", "account": "Account" },
+    "search": { "title": "Cerca", "placeholder": "Cerca un prodotto…", "submit": "Cerca", "no_results": "Nessun risultato. Prova con un'altra parola." },
+    "404": { "title": "Pagina non trovata", "subtext": "Il link potrebbe essere vecchio o il prodotto non è più disponibile.", "link": "Torna alla home" },
+    "pagination": { "page": "Pagina {{ page }}" },
+    "newsletter": { "placeholder": "La tua email", "submit": "Iscriviti", "success": "Grazie! Controlla la tua casella di posta." },
+    "footer": { "rights": "Tutti i diritti riservati." },
+    "password": { "submit": "Entra" }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Aggiungi al carrello",
+      "adding": "Aggiunta in corso…",
+      "sold_out": "Esaurito",
+      "quantity": "Quantità",
+      "description": "Descrizione",
+      "reviews": "recensioni",
+      "save": "Risparmi",
+      "view_image": "Immagine"
+    }
+  },
+  "collections": { "general": { "all": "Collezioni", "no_products": "Nessun prodotto in questa collezione." } },
+  "cart": {
+    "general": {
+      "title": "Carrello",
+      "empty": "Il tuo carrello è vuoto.",
+      "subtotal": "Subtotale",
+      "checkout": "Vai al checkout",
+      "continue_shopping": "Continua lo shopping",
+      "update": "Aggiorna",
+      "remove": "Rimuovi",
+      "shipping_note": "Spedizione e tasse calcolate al checkout."
+    },
+    "label": { "product": "Prodotto", "quantity": "Quantità", "total": "Totale" }
+  },
+  "contact": {
+    "form": { "name": "Nome", "email": "Email", "message": "Messaggio", "send": "Invia messaggio", "success": "Messaggio inviato. Ti rispondiamo entro 24 ore." }
+  },
+  "customer": {
+    "login": { "title": "Accedi", "email": "Email", "password": "Password", "submit": "Accedi", "create_account": "Crea un account" },
+    "register": { "title": "Crea un account", "first_name": "Nome", "last_name": "Cognome", "email": "Email", "password": "Password", "submit": "Registrati" },
+    "account": { "title": "Il mio account", "addresses": "Indirizzi", "logout": "Esci" },
+    "orders": { "order_number": "Ordine", "date": "Data", "total": "Totale", "none": "Non hai ancora effettuato ordini." },
+    "addresses": { "title": "Indirizzi", "address1": "Indirizzo", "city": "Città", "zip": "CAP", "country": "Paese", "add": "Aggiungi indirizzo" },
+    "activate_account": { "title": "Attiva account", "confirm": "Conferma password", "submit": "Attiva" },
+    "reset_password": { "title": "Reimposta password", "submit": "Salva" }
+  }
+}

@@ -1,0 +1,25 @@
+<article class="card">
+  {%- if product.compare_at_price > product.price -%}
+    {%- assign save = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+    <span class="badge card__flag">-{{ save }}%</span>
+  {%- endif -%}
+  <a href="{{ product.url }}">
+    <div class="card__media">
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 45vw', widths: '300,450,600', alt: product.featured_media.alt | default: product.title }}
+      {%- else -%}
+        <img src="{{ 'product-1.jpg' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="600" height="600">
+      {%- endif -%}
+    </div>
+    <div class="card__body">
+      <h3 class="card__title">{{ product.title }}</h3>
+      <div class="rating">{% render 'star-rating', rating: 4.8 %}</div>
+      <div class="card__price">
+        {{ product.price | money }}
+        {%- if product.compare_at_price > product.price -%}
+          <span class="card__compare">{{ product.compare_at_price | money }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </a>
+</article>

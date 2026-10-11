@@ -1,0 +1,60 @@
+<section class="hero">
+  <div class="hero__inner">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="hero__title">{{ section.settings.heading }}</h1>
+      <p class="hero__sub">{{ section.settings.subheading }}</p>
+
+      <div class="hero__cta">
+        {%- if section.settings.button_label != blank -%}
+          <a class="btn btn--primary btn--lg" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a class="btn btn--outline btn--lg" href="{{ section.settings.button2_link }}">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.points != blank -%}
+        <ul class="hero__points">
+          {%- assign lines = section.settings.points | newline_to_br | split: '<br />' -%}
+          {%- for line in lines -%}
+            {%- assign clean = line | strip -%}
+            {%- if clean != blank -%}
+              <li>{% render 'icon', name: 'check', size: 18 %}<span>{{ clean }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="hero__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600,900,1200', alt: section.settings.heading }}
+      {%- else -%}
+        <img src="{{ 'product-2.jpg' | asset_url }}" alt="{{ section.settings.heading | escape }}" width="1000" height="1000" style="border-radius:24px">
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Occhiello", "default": "Beauty tech per casa" },
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "Il collo torna a sembrare giovane. In 5 minuti al giorno." },
+    { "type": "textarea", "id": "subheading", "label": "Sottotitolo", "default": "LED, microcorrenti EMS e calore in un unico dispositivo. Nessun appuntamento, nessuna attesa: risultati visibili in 4 settimane." },
+    { "type": "text", "id": "button_label", "label": "Testo pulsante", "default": "Scopri il dispositivo" },
+    { "type": "url", "id": "button_link", "label": "Link pulsante" },
+    { "type": "text", "id": "button2_label", "label": "Testo secondo pulsante", "default": "Come funziona" },
+    { "type": "url", "id": "button2_link", "label": "Link secondo pulsante" },
+    { "type": "textarea", "id": "points", "label": "Punti (uno per riga)", "default": "Spedizione gratuita in 24/48 ore\nReso gratuito entro 30 giorni\nPagamento alla consegna disponibile" },
+    { "type": "image_picker", "id": "image", "label": "Immagine" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

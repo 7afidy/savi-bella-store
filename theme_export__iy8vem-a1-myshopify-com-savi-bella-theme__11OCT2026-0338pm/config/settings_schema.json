@@ -1,0 +1,35 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Savi Bella",
+    "theme_author": "Savi Bella",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Colori",
+    "settings": [
+      { "type": "color", "id": "color_primary", "label": "Rosa principale", "default": "#FF51B9" },
+      { "type": "color", "id": "color_primary_dark", "label": "Rosa scuro (hover, prezzi)", "default": "#C4127E" },
+      { "type": "color", "id": "color_background_soft", "label": "Rosa chiarissimo (sfondi)", "default": "#FFF3FA" },
+      { "type": "color", "id": "color_text", "label": "Colore testo", "default": "#1B1420" }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon (32×32 px)" },
+      {
+        "type": "paragraph",
+        "content": "Il logo si imposta nella sezione Header della homepage. Se non ne carichi uno, viene usato il logo Savi Bella incluso nel tema."
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "paragraph", "content": "I link social si impostano nella sezione Footer." }
+    ]
+  }
+]

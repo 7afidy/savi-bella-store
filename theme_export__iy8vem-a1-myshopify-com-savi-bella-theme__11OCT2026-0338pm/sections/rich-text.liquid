@@ -1,0 +1,24 @@
+<section class="section">
+  <div class="wrap wrap--narrow" style="text-align:{{ section.settings.align }}">
+    {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+    <div class="rte">{{ section.settings.content }}</div>
+    {%- if section.settings.button_label != blank -%}
+      <a class="btn btn--primary" href="{{ section.settings.button_link }}" style="margin-top:12px">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testo",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "La nostra promessa" },
+    { "type": "richtext", "id": "content", "label": "Testo", "default": "<p>Selezioniamo pochi dispositivi, li proviamo per mesi e li spediamo dall'Italia. Se non fa per te, te lo riprendiamo entro 30 giorni.</p>" },
+    { "type": "select", "id": "align", "label": "Allineamento", "default": "center",
+      "options": [{ "value": "left", "label": "Sinistra" }, { "value": "center", "label": "Centro" }] },
+    { "type": "text", "id": "button_label", "label": "Testo pulsante" },
+    { "type": "url", "id": "button_link", "label": "Link pulsante" }
+  ],
+  "presets": [{ "name": "Testo" }]
+}
+{% endschema %}

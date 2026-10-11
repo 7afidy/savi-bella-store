@@ -1,0 +1,37 @@
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="section__head">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}<p>{{ section.settings.subheading }}</p>{%- endif -%}
+    </div>
+    <div class="accordion">
+      {%- for block in section.blocks -%}
+        <details {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question }}</summary>
+          <div class="accordion__body rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Domande frequenti",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "Domande frequenti" },
+    { "type": "text", "id": "subheading", "label": "Sottotitolo", "default": "Se non trovi la risposta, scrivici: rispondiamo entro 24 ore." }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Domanda",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Domanda", "default": "In quanto tempo si vedono i risultati?" },
+        { "type": "richtext", "id": "answer", "label": "Risposta", "default": "<p>La maggior parte delle clienti nota una pelle più tonica dopo 3-4 settimane di uso quotidiano.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Domande frequenti", "blocks": [{ "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }] }]
+}
+{% endschema %}

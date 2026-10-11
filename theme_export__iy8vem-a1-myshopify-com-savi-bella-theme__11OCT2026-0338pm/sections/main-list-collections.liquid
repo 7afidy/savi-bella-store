@@ -1,0 +1,20 @@
+<section class="section">
+  <div class="wrap">
+    <div class="section__head"><h1>{{ 'collections.general.all' | t }}</h1></div>
+    <div class="grid grid--3">
+      {%- for collection in collections -%}
+        <a class="card" href="{{ collection.url }}">
+          <div class="card__media">
+            {%- if collection.featured_image -%}
+              {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: collection.title }}
+            {%- endif -%}
+          </div>
+          <div class="card__body"><h3 class="card__title">{{ collection.title }}</h3></div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Elenco collezioni", "settings": [] }
+{% endschema %}

@@ -1,0 +1,46 @@
+{%- assign product = section.settings.product -%}
+<section class="section section--blush">
+  <div class="wrap">
+    <div class="split">
+      <div class="split__media">
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '500,750,1000', alt: product.title }}
+        {%- else -%}
+          <img src="{{ 'product-1.jpg' | asset_url }}" alt="{{ section.settings.heading | escape }}" width="1000" height="1000" style="border-radius:14px">
+        {%- endif -%}
+      </div>
+      <div>
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2>{{ section.settings.heading }}</h2>
+        <p style="color:var(--muted)">{{ section.settings.text }}</p>
+        {%- if product != blank -%}
+          <div class="price-row" style="margin-bottom:24px">
+            <span class="price">{{ product.price | money }}</span>
+            {%- if product.compare_at_price > product.price -%}
+              <span class="price--compare">{{ product.compare_at_price | money }}</span>
+              {%- assign save = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+              <span class="badge">-{{ save }}%</span>
+            {%- endif -%}
+          </div>
+          <a class="btn btn--primary btn--lg" href="{{ product.url }}">{{ section.settings.button_label }}</a>
+        {%- else -%}
+          <a class="btn btn--primary btn--lg" href="{{ routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Prodotto in evidenza",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Prodotto" },
+    { "type": "text", "id": "eyebrow", "label": "Occhiello", "default": "Il nostro best seller" },
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "Savi Bella Lift — massaggiatore viso e collo" },
+    { "type": "textarea", "id": "text", "label": "Testo", "default": "Calore a 42°C, microcorrenti EMS e tre colori LED lavorano insieme per distendere le rughe orizzontali del collo e ridefinire l'ovale del viso. Bastano cinque minuti, la sera, davanti allo specchio." },
+    { "type": "text", "id": "button_label", "label": "Testo pulsante", "default": "Acquista ora" }
+  ],
+  "presets": [{ "name": "Prodotto in evidenza" }]
+}
+{% endschema %}

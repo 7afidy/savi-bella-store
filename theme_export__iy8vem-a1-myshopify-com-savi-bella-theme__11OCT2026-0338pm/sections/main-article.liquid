@@ -1,0 +1,13 @@
+<article class="section">
+  <div class="wrap wrap--narrow">
+    <h1>{{ article.title }}</h1>
+    <p style="color:var(--muted)">{{ article.published_at | date: '%d/%m/%Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+    {%- if article.image -%}
+      {{ article.image | image_url: width: 1200 | image_tag: loading: 'eager', alt: article.title, style: 'border-radius:14px;margin:24px 0' }}
+    {%- endif -%}
+    <div class="rte">{{ article.content }}</div>
+  </div>
+</article>
+{% schema %}
+{ "name": "Articolo", "settings": [] }
+{% endschema %}

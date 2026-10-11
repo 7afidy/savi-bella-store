@@ -1,0 +1,15 @@
+<section class="section"><div class="wrap">
+  <h1>{{ 'customer.addresses.title' | t }}</h1>
+  {%- paginate customer.addresses by 6 -%}
+    {%- for address in customer.addresses -%}
+      <div class="form-note" style="margin-bottom:12px">{{ address | format_address }}</div>
+    {%- endfor -%}
+  {%- endpaginate -%}
+  {%- form 'customer_address', customer.new_address -%}
+    <div class="form-field"><label for="AddrAddress1">{{ 'customer.addresses.address1' | t }}</label><input type="text" id="AddrAddress1" name="address[address1]"></div>
+    <div class="form-field"><label for="AddrCity">{{ 'customer.addresses.city' | t }}</label><input type="text" id="AddrCity" name="address[city]"></div>
+    <div class="form-field"><label for="AddrZip">{{ 'customer.addresses.zip' | t }}</label><input type="text" id="AddrZip" name="address[zip]"></div>
+    <div class="form-field"><label for="AddrCountry">{{ 'customer.addresses.country' | t }}</label><input type="text" id="AddrCountry" name="address[country]"></div>
+    <button type="submit" class="btn btn--primary">{{ 'customer.addresses.add' | t }}</button>
+  {%- endform -%}
+</div></section>

@@ -1,0 +1,27 @@
+{%- if section.settings.text != blank -%}
+  <div class="announcement" style="background: {{ section.settings.bg }}; color: {{ section.settings.color }};">
+    {%- if section.settings.link != blank -%}
+      <a href="{{ section.settings.link }}">{{ section.settings.text }}</a>
+    {%- else -%}
+      {{ section.settings.text }}
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barra annunci",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Testo",
+      "default": "🚚 Spedizione gratuita in 24/48 ore • Pagamento alla consegna"
+    },
+    { "type": "url", "id": "link", "label": "Link (facoltativo)" },
+    { "type": "color", "id": "bg", "label": "Sfondo", "default": "#FF51B9" },
+    { "type": "color", "id": "color", "label": "Testo", "default": "#FFFFFF" }
+  ],
+  "presets": [{ "name": "Barra annunci" }]
+}
+{% endschema %}

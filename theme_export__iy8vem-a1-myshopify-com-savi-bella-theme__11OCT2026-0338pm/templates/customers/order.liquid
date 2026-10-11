@@ -1,0 +1,10 @@
+<section class="section"><div class="wrap">
+  <h1>{{ order.name }}</h1>
+  <p style="color:var(--muted)">{{ order.created_at | date: '%d/%m/%Y' }}</p>
+  <table class="cart-table"><tbody>
+  {%- for line_item in order.line_items -%}
+    <tr><td>{{ line_item.title }} × {{ line_item.quantity }}</td><td style="text-align:right">{{ line_item.final_line_price | money }}</td></tr>
+  {%- endfor -%}
+  </tbody></table>
+  <p style="text-align:right;font-weight:700;margin-top:16px">{{ 'customer.orders.total' | t }}: {{ order.total_price | money }}</p>
+</div></section>

@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="wrap">
+    <div class="section__head"><h1>{{ blog.title }}</h1></div>
+    {%- paginate blog.articles by 9 -%}
+      <div class="grid grid--3">
+        {%- for article in blog.articles -%}
+          <article class="card">
+            {%- if article.image -%}
+              <a href="{{ article.url }}"><div class="card__media">{{ article.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: article.title }}</div></a>
+            {%- endif -%}
+            <div class="card__body">
+              <h3 class="card__title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+              <p style="font-size:.9rem;color:var(--muted)">{{ article.excerpt_or_content | strip_html | truncate: 120 }}</p>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endpaginate -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

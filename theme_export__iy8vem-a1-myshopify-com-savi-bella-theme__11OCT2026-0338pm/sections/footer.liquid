@@ -1,0 +1,86 @@
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          {%- if section.settings.logo != blank -%}
+            {{ section.settings.logo | image_url: width: 300 | image_tag: alt: shop.name }}
+          {%- else -%}
+            <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" width="160">
+          {%- endif -%}
+        </div>
+        <p class="footer__about">{{ section.settings.about }}</p>
+        <div class="footer__social">
+          {%- if section.settings.instagram != blank -%}
+            <a href="{{ section.settings.instagram }}" aria-label="Instagram" rel="noopener" target="_blank">{% render 'icon', name: 'instagram', size: 18 %}</a>
+          {%- endif -%}
+          {%- if section.settings.facebook != blank -%}
+            <a href="{{ section.settings.facebook }}" aria-label="Facebook" rel="noopener" target="_blank">{% render 'icon', name: 'facebook', size: 18 %}</a>
+          {%- endif -%}
+          {%- if section.settings.tiktok != blank -%}
+            <a href="{{ section.settings.tiktok }}" aria-label="TikTok" rel="noopener" target="_blank">{% render 'icon', name: 'tiktok', size: 18 %}</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          <h4>{{ block.settings.heading }}</h4>
+          <ul>
+            {%- for link in block.settings.menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+
+      <div>
+        <h4>{{ section.settings.contact_heading }}</h4>
+        <ul>
+          {%- if section.settings.email != blank -%}<li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>{%- endif -%}
+          {%- if section.settings.phone != blank -%}<li><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a></li>{%- endif -%}
+          {%- if section.settings.hours != blank -%}<li>{{ section.settings.hours }}</li>{%- endif -%}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'general.footer.rights' | t }}</span>
+      <span class="payment-icons">
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+        {%- endfor -%}
+      </span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo footer" },
+    { "type": "textarea", "id": "about", "label": "Descrizione breve", "default": "Beauty tech per la cura quotidiana del viso e del collo. Spedizione dall'Italia in 24/48 ore." },
+    { "type": "header", "content": "Contatti" },
+    { "type": "text", "id": "contact_heading", "label": "Titolo colonna contatti", "default": "Contatti" },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@savibella.com" },
+    { "type": "text", "id": "phone", "label": "Telefono" },
+    { "type": "text", "id": "hours", "label": "Orari", "default": "Lun–Ven, 9:00–18:00" },
+    { "type": "header", "content": "Social" },
+    { "type": "url", "id": "instagram", "label": "Instagram" },
+    { "type": "url", "id": "facebook", "label": "Facebook" },
+    { "type": "url", "id": "tiktok", "label": "TikTok" }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Colonna di link",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titolo", "default": "Informazioni" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ],
+  "max_blocks": 2
+}
+{% endschema %}

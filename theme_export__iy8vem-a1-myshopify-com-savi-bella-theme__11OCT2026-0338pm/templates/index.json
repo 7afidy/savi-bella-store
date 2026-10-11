@@ -1,0 +1,78 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Beauty tech da usare a casa",
+        "heading": "Il collo torna a sembrare giovane. In 5 minuti al giorno.",
+        "subheading": "LED, microcorrenti EMS e calore a 42°C in un solo dispositivo. Nessun appuntamento, nessuna attesa: risultati visibili in circa 4 settimane.",
+        "button_label": "Scopri il dispositivo",
+        "button2_label": "Come funziona",
+        "button2_link": "#come-funziona",
+        "points": "Spedizione gratuita in 24/48 ore\nReso gratuito entro 30 giorni\nPagamento alla consegna disponibile"
+      }
+    },
+    "props": {
+      "type": "value-props",
+      "blocks": {
+        "b1": { "type": "prop", "settings": { "icon": "sparkle", "heading": "Luce LED", "text": "Rosso, blu e verde: tre lunghezze d'onda per compattezza, imperfezioni e macchie." } },
+        "b2": { "type": "prop", "settings": { "icon": "heart", "heading": "Microcorrenti EMS", "text": "Stimolano i muscoli del collo e ridefiniscono l'ovale del viso." } },
+        "b3": { "type": "prop", "settings": { "icon": "clock", "heading": "Calore a 42°C", "text": "Apre i pori e fa penetrare siero e crema molto più in profondità." } },
+        "b4": { "type": "prop", "settings": { "icon": "shield", "heading": "Sicuro ogni giorno", "text": "Testa in acciaio inox, spegnimento automatico, adatto a pelli sensibili." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "heading": "Perché funziona",
+        "subheading": "Tre tecnologie da centro estetico in un dispositivo che sta in una mano."
+      }
+    },
+    "featured": {
+      "type": "featured-product",
+      "settings": {
+        "eyebrow": "Il nostro best seller",
+        "heading": "Savi Bella Lift — massaggiatore viso e collo",
+        "text": "Calore, microcorrenti e luce LED lavorano insieme per distendere le rughe orizzontali del collo e ridefinire il contorno del viso. Bastano cinque minuti la sera, davanti allo specchio.",
+        "button_label": "Acquista ora"
+      }
+    },
+    "steps": {
+      "type": "how-to-use",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "heading": "Applica il siero", "text": "Su viso e collo puliti, stendi il tuo siero o gel abituale." } },
+        "s2": { "type": "step", "settings": { "heading": "Scegli la modalità", "text": "Premi il tasto per passare tra LED, EMS e calore. Parti dal livello 1." } },
+        "s3": { "type": "step", "settings": { "heading": "Massaggia verso l'alto", "text": "Cinque minuti, dal décolleté verso la mascella. Poi risciacqua la testina." } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": { "heading": "Come si usa", "subheading": "Tre passaggi, cinque minuti, ogni sera." }
+    },
+    "reviews": {
+      "type": "testimonials",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "text": "Lo uso da un mese la sera davanti alla TV. Le righe sul collo si vedono ancora, ma molto meno marcate.", "author": "Giulia M., Milano", "tag": "Acquisto verificato" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "text": "Arrivato in due giorni. La funzione calore è piacevolissima e la crema si assorbe davvero meglio.", "author": "Francesca R., Bologna", "tag": "Acquisto verificato" } },
+        "r3": { "type": "review", "settings": { "rating": 4, "text": "All'inizio la modalità EMS mi sembrava strana, poi ci si abitua. Pelle più tonica dopo tre settimane.", "author": "Sara D., Torino", "tag": "Acquisto verificato" } }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "settings": { "heading": "Cosa dicono le clienti", "subheading": "Recensioni raccolte dopo l'acquisto." }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "In quanto tempo si vedono i risultati?", "answer": "<p>La maggior parte delle clienti nota una pelle più tonica dopo 3-4 settimane di uso quotidiano. Le rughe più marcate richiedono circa due mesi.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "Si può usare sulla pelle sensibile?", "answer": "<p>Sì. Parti dal livello 1 di intensità e usa sempre un gel o un siero come conduttore. Evita la zona degli occhi.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "Quanto dura la batteria?", "answer": "<p>Circa 10 giorni con un uso quotidiano di 5 minuti. Si ricarica via USB-C in due ore.</p>" } },
+        "f4": { "type": "faq", "settings": { "question": "Come funzionano spedizione e reso?", "answer": "<p>Spedizione gratuita in tutta Italia in 24/48 ore lavorative. Hai 30 giorni per restituirlo: il reso è gratuito.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": { "heading": "Domande frequenti", "subheading": "Se non trovi la risposta, scrivici: rispondiamo entro 24 ore." }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "10% sul primo ordine",
+        "text": "Iscriviti e ricevi subito il codice sconto via email, insieme ai consigli della nostra estetista."
+      }
+    }
+  },
+  "order": ["hero", "props", "featured", "steps", "reviews", "faq", "newsletter"]
+}

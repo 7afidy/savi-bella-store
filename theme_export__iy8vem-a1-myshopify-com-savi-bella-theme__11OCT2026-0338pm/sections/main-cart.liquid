@@ -1,0 +1,56 @@
+<section class="section">
+  <div class="wrap">
+    <h1>{{ 'cart.general.title' | t }}</h1>
+    {%- if cart.item_count == 0 -%}
+      <p style="color:var(--muted)">{{ 'cart.general.empty' | t }}</p>
+      <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th colspan="2">{{ 'cart.label.product' | t }}</th>
+              <th>{{ 'cart.label.quantity' | t }}</th>
+              <th style="text-align:right">{{ 'cart.label.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr>
+                <td style="width:100px">
+                  {%- if item.image -%}{{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.title }}{%- endif -%}
+                </td>
+                <td>
+                  <a href="{{ item.url }}" style="font-weight:600">{{ item.product.title }}</a>
+                  {%- unless item.variant.title contains 'Default' -%}<div style="color:var(--muted);font-size:.88rem">{{ item.variant.title }}</div>{%- endunless -%}
+                  <div style="color:var(--muted);font-size:.88rem">{{ item.final_price | money }}</div>
+                  <a href="{{ item.url_to_remove }}" style="font-size:.85rem;text-decoration:underline;color:var(--muted)">{{ 'cart.general.remove' | t }}</a>
+                </td>
+                <td>
+                  <div class="qty">
+                    <button type="button" data-qty="down" aria-label="-">&minus;</button>
+                    <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'cart.label.quantity' | t }}">
+                    <button type="button" data-qty="up" aria-label="+">&plus;</button>
+                  </div>
+                </td>
+                <td style="text-align:right;font-weight:700">{{ item.final_line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px">
+          <button type="submit" name="update" class="btn btn--outline">{{ 'cart.general.update' | t }}</button>
+          <div style="text-align:right">
+            <div style="font-size:1.3rem;font-weight:700">{{ 'cart.general.subtotal' | t }}: {{ cart.total_price | money }}</div>
+            <p style="color:var(--muted);font-size:.88rem;margin:6px 0 14px">{{ 'cart.general.shipping_note' | t }}</p>
+            <button type="submit" name="checkout" class="btn btn--primary btn--lg">{{ 'cart.general.checkout' | t }}</button>
+          </div>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Carrello", "settings": [] }
+{% endschema %}

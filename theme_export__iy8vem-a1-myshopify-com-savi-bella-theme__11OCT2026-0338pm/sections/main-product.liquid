@@ -1,0 +1,310 @@
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign compare = variant.compare_at_price
+  assign has_discount = false
+  if compare > variant.price
+    assign has_discount = true
+    assign save_pct = compare | minus: variant.price | times: 100 | divided_by: compare
+  endif
+
+  comment
+    Video: pick the best MP4 (highest resolution up to 1280px tall) from the
+    Shopify-hosted video selected in the theme editor.
+  endcomment
+  assign pv = section.settings.video
+  assign pv_best = null
+  assign pv_first_mp4 = null
+  if pv != blank
+    for source in pv.sources
+      if source.format == 'mp4'
+        if pv_first_mp4 == blank
+          assign pv_first_mp4 = source
+        endif
+        if source.height <= 1280
+          if pv_best == blank or source.height > pv_best.height
+            assign pv_best = source
+          endif
+        endif
+      endif
+    endfor
+    if pv_best == blank
+      assign pv_best = pv_first_mp4
+    endif
+  endif
+-%}
+
+<style>
+  /* ---------- Portrait video (left column, under the gallery) ---------- */
+  #shopify-section-{{ section.id }} .product-video {
+    position: relative;
+    width: min(100%, var(--pv-max, 420px));
+    aspect-ratio: 9 / 16;
+    margin: 24px auto 0;
+    border-radius: var(--radius, 16px);
+    overflow: hidden;
+    background: #fbe7ef;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #shopify-section-{{ section.id }} .product-video__el {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none; /* no clicks, taps, pause or seek */
+  }
+  #shopify-section-{{ section.id }} .product-video__el::-webkit-media-controls,
+  #shopify-section-{{ section.id }} .product-video__el::-webkit-media-controls-panel,
+  #shopify-section-{{ section.id }} .product-video__el::-webkit-media-controls-start-playback-button,
+  #shopify-section-{{ section.id }} .product-video__el::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+    -webkit-appearance: none;
+  }
+  #shopify-section-{{ section.id }} .product-video--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    font-size: .9rem;
+    color: #b04a75;
+    border: 2px dashed #f3b6cd;
+  }
+</style>
+
+<section class="product wrap" data-product-root>
+  <div class="product__layout">
+
+    {%- comment -%} ---------- Media column: Gallery + Video ---------- {%- endcomment -%}
+    <div class="product__media">
+
+      <div data-gallery>
+        <div class="gallery__main" data-gallery-main>
+          {%- if has_discount and section.settings.show_badge -%}
+            <span class="badge" style="position:absolute;top:16px;left:16px;z-index:2">-{{ save_pct }}%</span>
+          {%- endif -%}
+          {%- if product.media.size > 0 -%}
+            {{ product.featured_media | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600,900,1200', alt: product.featured_media.alt | default: product.title }}
+          {%- else -%}
+            <img src="{{ 'product-1.jpg' | asset_url }}" alt="{{ product.title | escape }}" width="1200" height="1200">
+          {%- endif -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <div class="gallery__thumbs">
+            {%- for media in product.media -%}
+              <button type="button" class="gallery__thumb {% if forloop.first %}is-active{% endif %}"
+                      data-gallery-thumb data-full="{{ media | image_url: width: 1200 }}"
+                      aria-label="{{ 'products.product.view_image' | t }} {{ forloop.index }}">
+                {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: media.alt | default: product.title }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} ---------- Portrait 9:16 video (selected from Shopify Files in the theme editor) ---------- {%- endcomment -%}
+      {%- if pv_best != blank -%}
+        <div class="product-video" data-product-video style="--pv-max: {{ section.settings.video_max_width }}px">
+          <video class="product-video__el"
+                 autoplay
+                 muted
+                 loop
+                 playsinline
+                 webkit-playsinline
+                 preload="auto"
+                 disablepictureinpicture
+                 disableremoteplayback
+                 controlslist="nodownload nofullscreen noremoteplayback"
+                 tabindex="-1"
+                 aria-hidden="true"
+                 {% if pv.preview_image != blank %}poster="{{ pv.preview_image | image_url: width: 720 }}"{% endif %}>
+            <source src="{{ pv_best.url }}" type="{{ pv_best.mime_type }}">
+          </video>
+        </div>
+      {%- elsif request.design_mode -%}
+        <div class="product-video product-video--placeholder">
+          Seleziona un video nelle impostazioni della sezione Prodotto (visibile solo nell'editor).
+        </div>
+      {%- endif -%}
+
+    </div>
+
+    {%- comment -%} ---------- Info ---------- {%- endcomment -%}
+    <div class="product__info">
+      <h1 class="product__title">{{ product.title }}</h1>
+
+      {%- if section.settings.show_reviews -%}
+        <div class="rating">
+          {% render 'star-rating', rating: section.settings.rating %}
+          <span>{{ section.settings.rating }}/5 · {{ section.settings.review_count }} {{ 'products.product.reviews' | t }}</span>
+        </div>
+      {%- endif -%}
+
+      <div class="price-row">
+        <span class="price" data-price>{{ variant.price | money }}</span>
+        {%- if has_discount -%}
+          <span class="price--compare" data-compare>{{ compare | money }}</span>
+          <span class="badge">{{ 'products.product.save' | t }} {{ save_pct }}%</span>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="product__blurb">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.bullets != blank -%}
+        <ul class="bullets">
+          {%- assign lines = section.settings.bullets | newline_to_br | split: '<br />' -%}
+          {%- for line in lines -%}
+            {%- assign clean = line | strip -%}
+            {%- if clean != blank -%}
+              <li>{% render 'icon', name: 'check', size: 18 %}<span>{{ clean }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.show_stock -%}
+        <p class="stock-note"><span class="stock-dot"></span>{{ section.settings.stock_text }}</p>
+      {%- endif -%}
+
+      {%- form 'product', product, id: 'ProductForm' -%}
+        {%- unless product.has_only_default_variant -%}
+          <div class="variant-picker" style="margin-bottom:18px">
+            <label for="VariantSelect">{{ product.options_with_values[0].name | default: 'Opzione' }}</label>
+            <select id="VariantSelect" data-variant-select>
+              {%- for v in product.variants -%}
+                <option value="{{ v.id }}"
+                        {% if v == variant %}selected{% endif %}
+                        {% unless v.available %}disabled{% endunless %}
+                        data-price="{{ v.price | money }}"
+                        data-compare="{% if v.compare_at_price > v.price %}{{ v.compare_at_price | money }}{% endif %}"
+                        data-available="{{ v.available }}">
+                  {{ v.title }} — {{ v.price | money }}{% unless v.available %} ({{ 'products.product.sold_out' | t }}){% endunless %}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endunless -%}
+
+        <input type="hidden" name="id" value="{{ variant.id }}">
+
+        {%- comment -%} Quantity selector hidden {%- endcomment -%}
+
+        
+
+
+      {%- endform -%}
+
+      <div class="trust">
+        <div>{% render 'icon', name: 'truck', size: 24 %}{{ section.settings.trust_1 }}</div>
+        <div>{% render 'icon', name: 'refresh', size: 24 %}{{ section.settings.trust_2 }}</div>
+        <div>{% render 'icon', name: 'lock', size: 24 %}{{ section.settings.trust_3 }}</div>
+      </div>
+
+      {%- if product.description != blank or section.blocks.size > 0 -%}
+        <div class="accordion">
+          {%- if product.description != blank -%}
+            <details open>
+              <summary>{{ 'products.product.description' | t }}</summary>
+              <div class="accordion__body rte">{{ product.description }}</div>
+            </details>
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            <details {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.heading }}</summary>
+              <div class="accordion__body rte">{{ block.settings.content }}</div>
+            </details>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ---------- Sticky add to cart ---------- {%- endcomment -%}
+<div class="sticky-atc" id="StickyAtc">
+  {%- if product.featured_media -%}
+    {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+  {%- else -%}
+    <img src="{{ 'product-1.jpg' | asset_url }}" alt="" width="48" height="48">
+  {%- endif -%}
+  <div class="sticky-atc__info">
+    <div class="sticky-atc__title">{{ product.title }}</div>
+    <div class="sticky-atc__price">
+      <span data-sticky-price>{{ variant.price | money }}</span>
+      {%- if has_discount -%}<span class="price--compare" style="font-size:.82rem">{{ compare | money }}</span>{%- endif -%}
+    </div>
+  </div>
+  <button class="btn btn--primary" data-sticky-atc-submit {% unless variant.available %}disabled{% endunless %}>
+    {{ 'products.product.add_to_cart' | t }}
+  </button>
+</div>
+
+{%- comment -%} Keeps the video playing forever: restarts it if anything pauses or ends it {%- endcomment -%}
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ section.id }}') || document;
+    var videos = root.querySelectorAll('[data-product-video] video');
+    Array.prototype.forEach.call(videos, function (v) {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.controls = false;
+
+      function play() {
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function () {});
+      }
+
+      v.addEventListener('pause', function () { if (!document.hidden) play(); });
+      v.addEventListener('ended', function () { v.currentTime = 0; play(); });
+      v.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) play(); });
+
+      play();
+    });
+  })();
+</script>
+
+<script type="application/ld+json">
+{{ product | structured_data }}
+</script>
+
+{% schema %}
+{
+  "name": "Prodotto",
+  "settings": [
+    { "type": "textarea", "id": "subtitle", "label": "Sottotitolo / promessa", "default": "Massaggiatore viso e collo con LED, EMS e calore. 5 minuti al giorno per una pelle più tonica e levigata." },
+    { "type": "textarea", "id": "bullets", "label": "Punti chiave (uno per riga)", "default": "3 colori LED: rosso, blu e verde\nMicrocorrenti EMS per tonificare il collo\nCalore a 42°C per una migliore assorbenza delle creme\nBatteria ricaricabile USB: 10 giorni di autonomia\nSilenzioso, leggero e adatto a tutti i tipi di pelle" },
+    { "type": "checkbox", "id": "show_badge", "label": "Mostra badge sconto sull'immagine", "default": true },
+    { "type": "checkbox", "id": "show_buy_now", "label": "Mostra pulsante acquisto rapido", "default": true },
+    { "type": "header", "content": "Video" },
+    { "type": "video", "id": "video", "label": "Video verticale 9:16 (dai file di Shopify)", "info": "Parte in automatico, senza audio, in loop e senza controlli. Carica un MP4 verticale 9:16." },
+    { "type": "range", "id": "video_max_width", "min": 240, "max": 640, "step": 20, "unit": "px", "label": "Larghezza massima del video", "default": 420 },
+    { "type": "header", "content": "Recensioni" },
+    { "type": "checkbox", "id": "show_reviews", "label": "Mostra valutazione", "default": true },
+    { "type": "range", "id": "rating", "min": 3, "max": 5, "step": 0.1, "label": "Valutazione", "default": 4.8 },
+    { "type": "text", "id": "review_count", "label": "Numero di recensioni", "default": "1.247" },
+    { "type": "header", "content": "Urgenza" },
+    { "type": "checkbox", "id": "show_stock", "label": "Mostra nota disponibilità", "default": true },
+    { "type": "header", "content": "Rassicurazioni" },
+    { "type": "text", "id": "trust_1", "label": "Rassicurazione 1", "default": "Spedizione gratuita 24/48h" },
+    { "type": "text", "id": "trust_2", "label": "Rassicurazione 2", "default": "Reso gratuito entro 30 giorni" },
+    { "type": "text", "id": "trust_3", "label": "Rassicurazione 3", "default": "Pagamento sicuro" }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Riga a fisarmonica",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titolo", "default": "Spedizione e consegna" },
+        { "type": "richtext", "id": "content", "label": "Contenuto", "default": "<p>Spedizione gratuita in tutta Italia. Consegna in 24/48 ore lavorative con tracking via email.</p>" }
+      ]
+    }
+  ]
+}
+{% endschema %}

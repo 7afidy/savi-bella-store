@@ -1,0 +1,55 @@
+<section class="section">
+  <div class="wrap">
+    {%- if section.settings.heading != blank -%}
+      <div class="section__head">
+        <h2>{{ section.settings.heading }}</h2>
+        {%- if section.settings.subheading != blank -%}<p>{{ section.settings.subheading }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="props">
+      {%- for block in section.blocks -%}
+        <div class="prop" {{ block.shopify_attributes }}>
+          <div class="prop__icon">{% render 'icon', name: block.settings.icon, size: 22 %}</div>
+          <h3>{{ block.settings.heading }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Punti di forza",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "Perché funziona" },
+    { "type": "text", "id": "subheading", "label": "Sottotitolo", "default": "Tre tecnologie professionali in un dispositivo che sta in una mano." }
+  ],
+  "blocks": [
+    {
+      "type": "prop",
+      "name": "Punto",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icona", "default": "sparkle",
+          "options": [
+            { "value": "sparkle", "label": "Scintilla" },
+            { "value": "heart", "label": "Cuore" },
+            { "value": "clock", "label": "Orologio" },
+            { "value": "shield", "label": "Scudo" },
+            { "value": "truck", "label": "Spedizione" },
+            { "value": "refresh", "label": "Reso" }
+          ] },
+        { "type": "text", "id": "heading", "label": "Titolo", "default": "Luce LED" },
+        { "type": "text", "id": "text", "label": "Testo", "default": "Tre lunghezze d'onda per stimolare il collagene." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    { "name": "Punti di forza",
+      "blocks": [
+        { "type": "prop" }, { "type": "prop" }, { "type": "prop" }, { "type": "prop" }
+      ] }
+  ]
+}
+{% endschema %}

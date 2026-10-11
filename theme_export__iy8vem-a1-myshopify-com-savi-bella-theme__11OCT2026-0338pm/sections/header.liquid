@@ -1,0 +1,64 @@
+<header class="header">
+  <div class="header__inner">
+    <button class="header__burger" data-menu-toggle aria-label="{{ 'general.accessibility.menu' | t }}">
+      {% render 'icon', name: 'menu', size: 24 %}
+    </button>
+
+    <nav class="header__nav" aria-label="{{ 'general.accessibility.menu' | t }}">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- else -%}
+        <a href="{{ routes.root_url }}">{{ 'general.nav.home' | t }}</a>
+        <a href="{{ routes.all_products_collection_url }}">{{ 'general.nav.catalog' | t }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <a class="header__logo" href="{{ routes.root_url }}" style="--logo-h: {{ section.settings.logo_height }}px">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: widths: '200,300,400', alt: shop.name }}
+      {%- else -%}
+        <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" width="200">
+      {%- endif -%}
+    </a>
+
+    <div class="header__actions">
+      <button class="header__icon" data-search-toggle aria-label="{{ 'general.search.title' | t }}">
+        {% render 'icon', name: 'search', size: 22 %}
+      </button>
+      <a class="header__icon" href="{{ routes.account_url }}" aria-label="{{ 'general.nav.account' | t }}">
+        {% render 'icon', name: 'user', size: 22 %}
+      </a>
+      <button class="header__icon" data-cart-open aria-label="{{ 'cart.general.title' | t }}">
+        {% render 'icon', name: 'cart', size: 22 %}
+        <span class="cart-count" data-cart-count {% if cart.item_count == 0 %}style="display:none"{% endif %}>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="MobileMenu">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- else -%}
+      <a href="{{ routes.root_url }}">{{ 'general.nav.home' | t }}</a>
+      <a href="{{ routes.all_products_collection_url }}">{{ 'general.nav.catalog' | t }}</a>
+    {%- endfor -%}
+  </div>
+
+  <div class="search-bar" id="SearchBar">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}">
+      <button type="submit" class="btn btn--primary">{{ 'general.search.submit' | t }}</button>
+    </form>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo (lascia vuoto per usare il logo incluso)" },
+    { "type": "range", "id": "logo_height", "min": 30, "max": 90, "step": 2, "unit": "px", "label": "Altezza logo", "default": 54 },
+    { "type": "link_list", "id": "menu", "label": "Menu di navigazione" }
+  ]
+}
+{% endschema %}

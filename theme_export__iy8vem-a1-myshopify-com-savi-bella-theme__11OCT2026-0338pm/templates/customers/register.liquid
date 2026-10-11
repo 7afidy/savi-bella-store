@@ -1,0 +1,11 @@
+<section class="section"><div class="wrap" style="max-width:440px">
+  <h1>{{ 'customer.register.title' | t }}</h1>
+  {%- form 'create_customer' -%}
+    {%- if form.errors -%}<p class="form-error">{{ form.errors | default_errors }}</p>{%- endif -%}
+    <div class="form-field"><label for="FirstName">{{ 'customer.register.first_name' | t }}</label><input type="text" id="FirstName" name="customer[first_name]"></div>
+    <div class="form-field"><label for="LastName">{{ 'customer.register.last_name' | t }}</label><input type="text" id="LastName" name="customer[last_name]"></div>
+    <div class="form-field"><label for="RegEmail">{{ 'customer.register.email' | t }}</label><input type="email" id="RegEmail" name="customer[email]" required></div>
+    <div class="form-field"><label for="RegPassword">{{ 'customer.register.password' | t }}</label><input type="password" id="RegPassword" name="customer[password]" required></div>
+    <button type="submit" class="btn btn--primary btn--full">{{ 'customer.register.submit' | t }}</button>
+  {%- endform -%}
+</div></section>

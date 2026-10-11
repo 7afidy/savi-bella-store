@@ -1,0 +1,50 @@
+{
+  "general": {
+    "accessibility": { "skip_to_content": "Skip to content", "close": "Close", "menu": "Menu" },
+    "nav": { "home": "Home", "catalog": "Catalog", "about": "About", "contact": "Contact", "account": "Account" },
+    "search": { "title": "Search", "placeholder": "Search for a product…", "submit": "Search", "no_results": "No results. Try another word." },
+    "404": { "title": "Page not found", "subtext": "The link may be old, or the product is no longer available.", "link": "Back to home" },
+    "pagination": { "page": "Page {{ page }}" },
+    "newsletter": { "placeholder": "Your email", "submit": "Subscribe", "success": "Thanks! Check your inbox." },
+    "footer": { "rights": "All rights reserved." },
+    "password": { "submit": "Enter" }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "adding": "Adding…",
+      "sold_out": "Sold out",
+      "quantity": "Quantity",
+      "description": "Description",
+      "reviews": "reviews",
+      "save": "Save",
+      "view_image": "Image"
+    }
+  },
+  "collections": { "general": { "all": "Collections", "no_products": "No products in this collection." } },
+  "cart": {
+    "general": {
+      "title": "Cart",
+      "empty": "Your cart is empty.",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "continue_shopping": "Continue shopping",
+      "update": "Update",
+      "remove": "Remove",
+      "shipping_note": "Shipping and taxes calculated at checkout."
+    },
+    "label": { "product": "Product", "quantity": "Quantity", "total": "Total" }
+  },
+  "contact": {
+    "form": { "name": "Name", "email": "Email", "message": "Message", "send": "Send message", "success": "Message sent. We reply within 24 hours." }
+  },
+  "customer": {
+    "login": { "title": "Log in", "email": "Email", "password": "Password", "submit": "Log in", "create_account": "Create an account" },
+    "register": { "title": "Create an account", "first_name": "First name", "last_name": "Last name", "email": "Email", "password": "Password", "submit": "Register" },
+    "account": { "title": "My account", "addresses": "Addresses", "logout": "Log out" },
+    "orders": { "order_number": "Order", "date": "Date", "total": "Total", "none": "You have not placed any orders yet." },
+    "addresses": { "title": "Addresses", "address1": "Address", "city": "City", "zip": "Postal code", "country": "Country", "add": "Add address" },
+    "activate_account": { "title": "Activate account", "confirm": "Confirm password", "submit": "Activate" },
+    "reset_password": { "title": "Reset password", "submit": "Save" }
+  }
+}

@@ -1,0 +1,19 @@
+<div class="drawer" id="CartDrawer" role="dialog" aria-modal="true" aria-label="{{ 'cart.general.title' | t }}">
+  <div class="drawer__overlay" data-cart-close></div>
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <h2>{{ 'cart.general.title' | t }}</h2>
+      <button class="drawer__close" data-cart-close aria-label="{{ 'general.accessibility.close' | t }}">&times;</button>
+    </div>
+    <div class="drawer__items" id="CartDrawerItems"></div>
+    <div class="drawer__foot">
+      <div class="drawer__subtotal">
+        <span>{{ 'cart.general.subtotal' | t }}</span>
+        <span id="CartDrawerSubtotal">{{ cart.total_price | money }}</span>
+      </div>
+      <p style="margin:0;font-size:.85rem;color:var(--muted)">{{ 'cart.general.shipping_note' | t }}</p>
+      <a href="{{ routes.cart_url }}" class="btn btn--primary btn--full">{{ 'cart.general.checkout' | t }}</a>
+      <button class="btn btn--outline btn--full" data-cart-close>{{ 'cart.general.continue_shopping' | t }}</button>
+    </div>
+  </div>
+</div>

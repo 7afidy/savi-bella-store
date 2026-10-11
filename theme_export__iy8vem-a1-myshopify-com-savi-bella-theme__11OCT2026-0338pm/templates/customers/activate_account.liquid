@@ -1,0 +1,9 @@
+<section class="section"><div class="wrap" style="max-width:440px">
+  <h1>{{ 'customer.activate_account.title' | t }}</h1>
+  {%- form 'activate_customer_password' -%}
+    {%- if form.errors -%}<p class="form-error">{{ form.errors | default_errors }}</p>{%- endif -%}
+    <div class="form-field"><label for="ActPassword">{{ 'customer.login.password' | t }}</label><input type="password" id="ActPassword" name="customer[password]"></div>
+    <div class="form-field"><label for="ActConfirm">{{ 'customer.activate_account.confirm' | t }}</label><input type="password" id="ActConfirm" name="customer[password_confirmation]"></div>
+    <button type="submit" class="btn btn--primary btn--full">{{ 'customer.activate_account.submit' | t }}</button>
+  {%- endform -%}
+</div></section>
